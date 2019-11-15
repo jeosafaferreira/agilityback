@@ -3,10 +3,20 @@ package br.com.agility.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+import lombok.Data;
 
 @Entity
+@Data
 public class Pessoa {
-
+	@Id
+	@GeneratedValue(generator="seq_pessoa")
+	@SequenceGenerator(name="seq_pessoa", sequenceName="seq_pessoa")
 	private int id;
 	private String nome;
 	private Date dataNasc;
@@ -19,6 +29,9 @@ public class Pessoa {
 	private String sexo;
 	private String tel1;
 	private String tel2;
+	@JoinColumn
+	@ManyToOne
+	private Endereco endereco;
 	private Date created;
 	private Date modified;
 	private String created_by;
